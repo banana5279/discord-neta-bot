@@ -14,6 +14,7 @@ const {
 const config = require("./config");
 const { isTriggerImage, messageMatchesTriggerText } = require("./utils/imageTrigger");
 const { deleteMessagesAbove } = require("./utils/messageCleanup");
+const { shouldAutoDeleteMessage, deleteMatchedMessage } = require("./utils/autoDelete");
 
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
@@ -82,6 +83,11 @@ client.once("ready", () => {
 client.on("messageCreate", async (message) => {
   try {
     if (message.author.bot) {
+      return;
+    }
+
+    if (shouldAutoDeleteMessage(message, config)) {
+      await deleteMatchedMessage(message);
       return;
     }
 

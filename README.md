@@ -84,6 +84,9 @@ DELETE_MAX_MESSAGES=50
 TRIGGER_IMAGE_PATH=assets/delete-trigger.png
 TRIGGER_IMAGE_FILENAME=delete-trigger.png
 TRIGGER_TEXT=削除
+AUTO_DELETE_TEXTS=やっぱ裸が一番いい
 ```
 
 同じ画像ファイルが投稿されるか、同じファイル名の画像が投稿されるか、画像つきで本文が `削除` なら、そのメッセージより上にあるメッセージを新しい順に1秒ごとに消していきます。
+
+`AUTO_DELETE_TEXTS` に入れた文言は、その文言どおりのメッセージが送られた瞬間に自動削除します。複数入れたいときは `||` 区切りです。
