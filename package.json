@@ -1,0 +1,21 @@
+{
+  "name": "discord-neta-bot",
+  "version": "1.0.0",
+  "description": "Simple Discord joke bot built with discord.js",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "hash-trigger": "node src/tools/printTriggerHash.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "joke"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.4.7"
+  }
+}
