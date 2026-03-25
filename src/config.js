@@ -18,7 +18,7 @@ module.exports = {
     ? path.resolve(rootDir, process.env.TRIGGER_IMAGE_PATH)
     : path.join(rootDir, "assets", "delete-trigger.png"),
   triggerImageFilename: (process.env.TRIGGER_IMAGE_FILENAME || "delete-trigger.png").trim(),
-  triggerText: (process.env.TRIGGER_TEXT || "ふむふむ").trim(),
+  triggerText: (process.env.TRIGGER_TEXT || "delete").trim(),
   triggerImageHash: (process.env.TRIGGER_IMAGE_HASH || "").trim().toLowerCase(),
   deleteIntervalMs: Number(process.env.DELETE_INTERVAL_MS || 1000),
   deleteMaxMessages: Number(process.env.DELETE_MAX_MESSAGES || 50),

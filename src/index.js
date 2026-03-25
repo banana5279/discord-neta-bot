@@ -66,7 +66,7 @@ client.on("messageCreate", async (message) => {
         const matchedByImage = await isTriggerImage(attachment, config);
         const matchedByText = messageMatchesTriggerText(message, config);
 
-        if (matchedByImage && matchedByText) {
+        if (matchedByImage || matchedByText) {
           await deleteMessagesAbove(message, config);
           return;
         }
