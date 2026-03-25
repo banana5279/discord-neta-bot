@@ -5,7 +5,7 @@ function shouldAutoDeleteMessage(message, config) {
     return false;
   }
 
-  return config.autoDeleteTexts.includes(content);
+  return config.autoDeleteTexts.some((text) => content.includes(text));
 }
 
 async function deleteMatchedMessage(message) {

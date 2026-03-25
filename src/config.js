@@ -1,8 +1,13 @@
 const path = require("node:path");
 
 const rootDir = path.resolve(__dirname, "..");
+const defaultAutoDeleteTexts = [
+  "やっぱ裸",
+  "裸見られた",
+  "従兄弟に裸見られた"
+];
 
-const autoDeleteTexts = (process.env.AUTO_DELETE_TEXTS || "やっぱ裸が一番いい")
+const autoDeleteTexts = (process.env.AUTO_DELETE_TEXTS || defaultAutoDeleteTexts.join("||"))
   .split("||")
   .map((text) => text.trim())
   .filter(Boolean);
