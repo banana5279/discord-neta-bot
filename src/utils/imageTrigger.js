@@ -62,7 +62,7 @@ function messageMatchesTriggerText(message, config) {
     return false;
   }
 
-  return message.content.trim() === config.triggerText;
+  return message.content.includes(config.triggerText);
 }
 
 module.exports = {
