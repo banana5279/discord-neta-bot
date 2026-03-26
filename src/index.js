@@ -13,6 +13,7 @@ const { deleteMessagesAbove } = require("./utils/messageCleanup");
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
 const ruikasuPattern = /るいカス/i;
+const gorimachoShunkouPattern = /ゴリマッチョ瞬光/i;
 
 if (!token) {
   console.error("DISCORD_TOKEN is missing. Set it in the .env file.");
@@ -43,18 +44,18 @@ async function safeReply(message, content) {
   }
 }
 
-async function sendRuikasuImage(message) {
-  if (!fs.existsSync(config.ruikasuImagePath)) {
-    console.error(`Ruikasu image not found: ${config.ruikasuImagePath}`);
+async function sendImageReply(message, imagePath, label) {
+  if (!fs.existsSync(imagePath)) {
+    console.error(`${label} image not found: ${imagePath}`);
     return null;
   }
 
   try {
     return await message.channel.send({
-      files: [config.ruikasuImagePath]
+      files: [imagePath]
     });
   } catch (error) {
-    console.error("Failed to send ruikasu image:", error.message);
+    console.error(`Failed to send ${label} image:`, error.message);
     return null;
   }
 }
@@ -74,7 +75,12 @@ client.on("messageCreate", async (message) => {
     }
 
     if (ruikasuPattern.test(message.content)) {
-      await sendRuikasuImage(message);
+      await sendImageReply(message, config.ruikasuImagePath, "Ruikasu");
+      return;
+    }
+
+    if (gorimachoShunkouPattern.test(message.content)) {
+      await sendImageReply(message, config.gorimachoShunkouImagePath, "GorimachoShunkou");
       return;
     }
 

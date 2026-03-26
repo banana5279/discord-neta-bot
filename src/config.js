@@ -14,5 +14,8 @@ module.exports = {
   deleteMaxMessages: Number(process.env.DELETE_MAX_MESSAGES || 50),
   ruikasuImagePath: process.env.RUIKASU_IMAGE_PATH
     ? path.resolve(rootDir, process.env.RUIKASU_IMAGE_PATH)
-    : path.join(rootDir, "assets", "ruikasu.png")
+    : path.join(rootDir, "assets", "ruikasu.png"),
+  gorimachoShunkouImagePath: process.env.GORIMACHO_SHUNKOU_IMAGE_PATH
+    ? path.resolve(rootDir, process.env.GORIMACHO_SHUNKOU_IMAGE_PATH)
+    : path.join(rootDir, "assets", "gorimacho-shunkou.png")
 };
