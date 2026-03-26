@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const fs = require("node:fs");
 const {
   Client,
   GatewayIntentBits,
@@ -8,10 +9,10 @@ const {
 const config = require("./config");
 const { isTriggerImage, messageMatchesTriggerText } = require("./utils/imageTrigger");
 const { deleteMessagesAbove } = require("./utils/messageCleanup");
-const { shouldAutoDeleteMessage, deleteMatchedMessage } = require("./utils/autoDelete");
 
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
+const ruikasuPattern = /るいカス/i;
 
 if (!token) {
   console.error("DISCORD_TOKEN is missing. Set it in the .env file.");
@@ -42,6 +43,22 @@ async function safeReply(message, content) {
   }
 }
 
+async function sendRuikasuImage(message) {
+  if (!fs.existsSync(config.ruikasuImagePath)) {
+    console.error(`Ruikasu image not found: ${config.ruikasuImagePath}`);
+    return null;
+  }
+
+  try {
+    return await message.channel.send({
+      files: [config.ruikasuImagePath]
+    });
+  } catch (error) {
+    console.error("Failed to send ruikasu image:", error.message);
+    return null;
+  }
+}
+
 const commands = {
   ping: () => "Pong!"
 };
@@ -56,8 +73,8 @@ client.on("messageCreate", async (message) => {
       return;
     }
 
-    if (shouldAutoDeleteMessage(message, config)) {
-      await deleteMatchedMessage(message);
+    if (ruikasuPattern.test(message.content)) {
+      await sendRuikasuImage(message);
       return;
     }
 

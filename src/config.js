@@ -1,16 +1,6 @@
 const path = require("node:path");
 
 const rootDir = path.resolve(__dirname, "..");
-const defaultAutoDeleteTexts = [
-  "やっぱ裸",
-  "裸見られた",
-  "従兄弟に裸見られた"
-];
-
-const autoDeleteTexts = (process.env.AUTO_DELETE_TEXTS || defaultAutoDeleteTexts.join("||"))
-  .split("||")
-  .map((text) => text.trim())
-  .filter(Boolean);
 
 module.exports = {
   prefix: process.env.PREFIX || "!",
@@ -22,5 +12,7 @@ module.exports = {
   triggerImageHash: (process.env.TRIGGER_IMAGE_HASH || "").trim().toLowerCase(),
   deleteIntervalMs: Number(process.env.DELETE_INTERVAL_MS || 1000),
   deleteMaxMessages: Number(process.env.DELETE_MAX_MESSAGES || 50),
-  autoDeleteTexts
+  ruikasuImagePath: process.env.RUIKASU_IMAGE_PATH
+    ? path.resolve(rootDir, process.env.RUIKASU_IMAGE_PATH)
+    : path.join(rootDir, "assets", "ruikasu.png")
 };
