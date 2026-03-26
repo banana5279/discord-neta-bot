@@ -17,5 +17,11 @@ module.exports = {
     : path.join(rootDir, "assets", "ruikasu.png"),
   gorimachoShunkouImagePath: process.env.GORIMACHO_SHUNKOU_IMAGE_PATH
     ? path.resolve(rootDir, process.env.GORIMACHO_SHUNKOU_IMAGE_PATH)
-    : path.join(rootDir, "assets", "gorimacho-shunkou.png")
+    : path.join(rootDir, "assets", "gorimacho-shunkou.png"),
+  marieTachiharaNetImagePath: process.env.MARIE_TACHIHARA_NET_IMAGE_PATH
+    ? path.resolve(rootDir, process.env.MARIE_TACHIHARA_NET_IMAGE_PATH)
+    : path.join(rootDir, "assets", "marie-tachihara-net.png"),
+  tachiharaIsamuImagePath: process.env.TACHIHARA_ISAMU_IMAGE_PATH
+    ? path.resolve(rootDir, process.env.TACHIHARA_ISAMU_IMAGE_PATH)
+    : path.join(rootDir, "assets", "tachihara-isamu.png")
 };

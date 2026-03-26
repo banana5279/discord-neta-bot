@@ -14,6 +14,8 @@ const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
 const ruikasuPattern = /るいカス/i;
 const gorimachoShunkouPattern = /ゴリマッチョ瞬光/i;
+const marieTachiharaNetPattern = /マリー・タチハラネット/i;
+const tachiharaIsamuPattern = /立原勇/i;
 
 if (!token) {
   console.error("DISCORD_TOKEN is missing. Set it in the .env file.");
@@ -81,6 +83,16 @@ client.on("messageCreate", async (message) => {
 
     if (gorimachoShunkouPattern.test(message.content)) {
       await sendImageReply(message, config.gorimachoShunkouImagePath, "GorimachoShunkou");
+      return;
+    }
+
+    if (marieTachiharaNetPattern.test(message.content)) {
+      await sendImageReply(message, config.marieTachiharaNetImagePath, "MarieTachiharaNet");
+      return;
+    }
+
+    if (tachiharaIsamuPattern.test(message.content)) {
+      await sendImageReply(message, config.tachiharaIsamuImagePath, "TachiharaIsamu");
       return;
     }
 
